@@ -39,15 +39,15 @@ print (value_1, value_2) # both are equal
 def print_button(t:Timer):
     print("print_button:",pin_button())
 
-# Set timer's interrupt each 2500ms and run the callback
+# Set timer's interrupt each 2500ms and run callback
 Timer().init(mode=Timer.PERIODIC, period = 2500, callback=print_button)
 # Don´t set period=0ms
 
-# Function to be used in timer callback
+# Function to be used in irq callback
 def print_FALLING(pin:Pin):
     print("FALLING",pin)
 
-# Set interrupt when input FALLING and run the callback (i.e. handler)
+# Set interrupt request (irq) when input FALLING and run callback (i.e. handler)
 pin_button.irq(trigger=Pin.IRQ_FALLING, handler=print_FALLING)
 
 # For debonce use timer interrupt over 20ms
